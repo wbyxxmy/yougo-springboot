@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yougo-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yougo-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yougo-integration" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yougo-jdbc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yougo-job" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yougo-rest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yougo-rest-depency" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yougo-service" charset="UTF-8" />
+  </component>
+</project>

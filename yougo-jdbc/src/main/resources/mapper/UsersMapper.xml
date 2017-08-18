@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yexj.yougo.jdbc.mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.yexj.yougo.jdbc.model.Users" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="rank" property="rank" jdbcType="INTEGER" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="signup_time" property="signupTime" jdbcType="TIMESTAMP" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, password, last_login_time, rank, role, telephone, signup_time, 
+    email
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from users
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yexj.yougo.jdbc.model.Users" >
+    insert into users (user_id, user_name, password, 
+      last_login_time, rank, role, 
+      telephone, signup_time, email
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{rank,jdbcType=INTEGER}, #{role,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{signupTime,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yexj.yougo.jdbc.model.Users" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="signupTime != null" >
+        signup_time,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="signupTime != null" >
+        #{signupTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yexj.yougo.jdbc.model.Users" >
+    update users
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="signupTime != null" >
+        signup_time = #{signupTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yexj.yougo.jdbc.model.Users" >
+    update users
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      rank = #{rank,jdbcType=INTEGER},
+      role = #{role,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      signup_time = #{signupTime,jdbcType=TIMESTAMP},
+      email = #{email,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <sql id="Select_Where_Condition" >
+    <where >
+      <if test="userId != null and userId !='' " >
+        and user_id=#{userId}
+      </if>
+      <if test="userName != null and userName !='' " >
+        and user_name=#{userName}
+      </if>
+      <if test="password != null and password !='' " >
+        and password=#{password}
+      </if>
+      <if test="lastLoginTime != null and lastLoginTime !='' " >
+        and last_login_time=#{lastLoginTime}
+      </if>
+      <if test="rank != null and rank !='' " >
+        and rank=#{rank}
+      </if>
+      <if test="role != null and role !='' " >
+        and role=#{role}
+      </if>
+      <if test="telephone != null and telephone !='' " >
+        and telephone=#{telephone}
+      </if>
+      <if test="signupTime != null and signupTime !='' " >
+        and signup_time=#{signupTime}
+      </if>
+      <if test="email != null and email !='' " >
+        and email=#{email}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByParam" parameterType="com.yexj.yougo.jdbc.model.Users" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM users
+    <include refid="Select_Where_Condition"/>
+  </select>
+  <select id="selectCountByParam" parameterType="com.yexj.yougo.jdbc.model.Users" resultType="java.lang.Integer" >
+    SELECT
+    COUNT(*)
+    FROM users
+    <include refid="Select_Where_Condition"/>
+  </select>
+</mapper>

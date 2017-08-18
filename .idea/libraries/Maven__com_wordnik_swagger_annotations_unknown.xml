@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.wordnik:swagger-annotations:unknown">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/wordnik/swagger-annotations/unknown/swagger-annotations-unknown.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/wordnik/swagger-annotations/unknown/swagger-annotations-unknown-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/wordnik/swagger-annotations/unknown/swagger-annotations-unknown-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

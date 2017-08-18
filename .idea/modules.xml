@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/yougo-api/yougo-api.iml" filepath="$PROJECT_DIR$/yougo-api/yougo-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yougo-common/yougo-common.iml" filepath="$PROJECT_DIR$/yougo-common/yougo-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yougo-integration/yougo-integration.iml" filepath="$PROJECT_DIR$/yougo-integration/yougo-integration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yougo-jdbc/yougo-jdbc.iml" filepath="$PROJECT_DIR$/yougo-jdbc/yougo-jdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yougo-job/yougo-job.iml" filepath="$PROJECT_DIR$/yougo-job/yougo-job.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yougo-rest/yougo-rest.iml" filepath="$PROJECT_DIR$/yougo-rest/yougo-rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yougo-rest-depency/yougo-rest-depency.iml" filepath="$PROJECT_DIR$/yougo-rest-depency/yougo-rest-depency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yougo-service/yougo-service.iml" filepath="$PROJECT_DIR$/yougo-service/yougo-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yougo-springboot.iml" filepath="$PROJECT_DIR$/yougo-springboot.iml" />
+    </modules>
+  </component>
+</project>

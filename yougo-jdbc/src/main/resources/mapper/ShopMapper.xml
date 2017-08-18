@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yexj.yougo.jdbc.mapper.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.yexj.yougo.jdbc.model.Shop" >
+    <id column="shop_id" property="shopId" jdbcType="VARCHAR" />
+    <result column="shop_popular" property="shopPopular" jdbcType="INTEGER" />
+    <result column="avg_goods_price_score" property="avgGoodsPriceScore" jdbcType="REAL" />
+    <result column="avg_goods_quality_score" property="avgGoodsQualityScore" jdbcType="REAL" />
+    <result column="avg_goods_trans_score" property="avgGoodsTransScore" jdbcType="REAL" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="shop_status" property="shopStatus" jdbcType="VARCHAR" />
+    <result column="auditor_id" property="auditorId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shop_id, shop_popular, avg_goods_price_score, avg_goods_quality_score, avg_goods_trans_score, 
+    shop_name, create_time, shop_status, auditor_id, user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where shop_id = #{shopId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from shop
+    where shop_id = #{shopId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yexj.yougo.jdbc.model.Shop" >
+    insert into shop (shop_id, shop_popular, avg_goods_price_score, 
+      avg_goods_quality_score, avg_goods_trans_score, shop_name, 
+      create_time, shop_status, auditor_id, 
+      user_id)
+    values (#{shopId,jdbcType=VARCHAR}, #{shopPopular,jdbcType=INTEGER}, #{avgGoodsPriceScore,jdbcType=REAL}, 
+      #{avgGoodsQualityScore,jdbcType=REAL}, #{avgGoodsTransScore,jdbcType=REAL}, #{shopName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{shopStatus,jdbcType=VARCHAR}, #{auditorId,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yexj.yougo.jdbc.model.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="shopPopular != null" >
+        shop_popular,
+      </if>
+      <if test="avgGoodsPriceScore != null" >
+        avg_goods_price_score,
+      </if>
+      <if test="avgGoodsQualityScore != null" >
+        avg_goods_quality_score,
+      </if>
+      <if test="avgGoodsTransScore != null" >
+        avg_goods_trans_score,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="shopStatus != null" >
+        shop_status,
+      </if>
+      <if test="auditorId != null" >
+        auditor_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopPopular != null" >
+        #{shopPopular,jdbcType=INTEGER},
+      </if>
+      <if test="avgGoodsPriceScore != null" >
+        #{avgGoodsPriceScore,jdbcType=REAL},
+      </if>
+      <if test="avgGoodsQualityScore != null" >
+        #{avgGoodsQualityScore,jdbcType=REAL},
+      </if>
+      <if test="avgGoodsTransScore != null" >
+        #{avgGoodsTransScore,jdbcType=REAL},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopStatus != null" >
+        #{shopStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="auditorId != null" >
+        #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yexj.yougo.jdbc.model.Shop" >
+    update shop
+    <set >
+      <if test="shopPopular != null" >
+        shop_popular = #{shopPopular,jdbcType=INTEGER},
+      </if>
+      <if test="avgGoodsPriceScore != null" >
+        avg_goods_price_score = #{avgGoodsPriceScore,jdbcType=REAL},
+      </if>
+      <if test="avgGoodsQualityScore != null" >
+        avg_goods_quality_score = #{avgGoodsQualityScore,jdbcType=REAL},
+      </if>
+      <if test="avgGoodsTransScore != null" >
+        avg_goods_trans_score = #{avgGoodsTransScore,jdbcType=REAL},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopStatus != null" >
+        shop_status = #{shopStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="auditorId != null" >
+        auditor_id = #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shop_id = #{shopId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yexj.yougo.jdbc.model.Shop" >
+    update shop
+    set shop_popular = #{shopPopular,jdbcType=INTEGER},
+      avg_goods_price_score = #{avgGoodsPriceScore,jdbcType=REAL},
+      avg_goods_quality_score = #{avgGoodsQualityScore,jdbcType=REAL},
+      avg_goods_trans_score = #{avgGoodsTransScore,jdbcType=REAL},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      shop_status = #{shopStatus,jdbcType=VARCHAR},
+      auditor_id = #{auditorId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where shop_id = #{shopId,jdbcType=VARCHAR}
+  </update>
+  <sql id="Select_Where_Condition" >
+    <where >
+      <if test="shopId != null and shopId !='' " >
+        and shop_id=#{shopId}
+      </if>
+      <if test="shopPopular != null and shopPopular !='' " >
+        and shop_popular=#{shopPopular}
+      </if>
+      <if test="avgGoodsPriceScore != null and avgGoodsPriceScore !='' " >
+        and avg_goods_price_score=#{avgGoodsPriceScore}
+      </if>
+      <if test="avgGoodsQualityScore != null and avgGoodsQualityScore !='' " >
+        and avg_goods_quality_score=#{avgGoodsQualityScore}
+      </if>
+      <if test="avgGoodsTransScore != null and avgGoodsTransScore !='' " >
+        and avg_goods_trans_score=#{avgGoodsTransScore}
+      </if>
+      <if test="shopName != null and shopName !='' " >
+        and shop_name=#{shopName}
+      </if>
+      <if test="createTime != null and createTime !='' " >
+        and create_time=#{createTime}
+      </if>
+      <if test="shopStatus != null and shopStatus !='' " >
+        and shop_status=#{shopStatus}
+      </if>
+      <if test="auditorId != null and auditorId !='' " >
+        and auditor_id=#{auditorId}
+      </if>
+      <if test="userId != null and userId !='' " >
+        and user_id=#{userId}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByParam" parameterType="com.yexj.yougo.jdbc.model.Shop" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM shop
+    <include refid="Select_Where_Condition"/>
+  </select>
+  <select id="selectCountByParam" parameterType="com.yexj.yougo.jdbc.model.Shop" resultType="java.lang.Integer" >
+    SELECT
+    COUNT(*)
+    FROM shop
+    <include refid="Select_Where_Condition"/>
+  </select>
+</mapper>

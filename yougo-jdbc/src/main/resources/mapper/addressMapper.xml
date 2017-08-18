@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yexj.yougo.jdbc.mapper.addressMapper" >
+  <resultMap id="BaseResultMap" type="com.yexj.yougo.jdbc.model.address" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="address_id" property="addressId" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, address_id, shop_id, user_id, province, city, county, detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yexj.yougo.jdbc.model.address" >
+    insert into address (id, address_id, shop_id, 
+      user_id, province, city, 
+      county, detail)
+    values (#{id,jdbcType=INTEGER}, #{addressId,jdbcType=VARCHAR}, #{shopId,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{county,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yexj.yougo.jdbc.model.address" >
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yexj.yougo.jdbc.model.address" >
+    update address
+    <set >
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yexj.yougo.jdbc.model.address" >
+    update address
+    set address_id = #{addressId,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="Select_Where_Condition" >
+    <where >
+      <if test="id != null and id !='' " >
+        and id=#{id}
+      </if>
+      <if test="addressId != null and addressId !='' " >
+        and address_id=#{addressId}
+      </if>
+      <if test="shopId != null and shopId !='' " >
+        and shop_id=#{shopId}
+      </if>
+      <if test="userId != null and userId !='' " >
+        and user_id=#{userId}
+      </if>
+      <if test="province != null and province !='' " >
+        and province=#{province}
+      </if>
+      <if test="city != null and city !='' " >
+        and city=#{city}
+      </if>
+      <if test="county != null and county !='' " >
+        and county=#{county}
+      </if>
+      <if test="detail != null and detail !='' " >
+        and detail=#{detail}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByParam" parameterType="com.yexj.yougo.jdbc.model.address" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM address
+    <include refid="Select_Where_Condition"/>
+  </select>
+  <select id="selectCountByParam" parameterType="com.yexj.yougo.jdbc.model.address" resultType="java.lang.Integer" >
+    SELECT
+    COUNT(*)
+    FROM address
+    <include refid="Select_Where_Condition"/>
+  </select>
+</mapper>

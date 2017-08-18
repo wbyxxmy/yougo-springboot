@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yexj.yougo.jdbc.mapper.OrderControlMapper" >
+  <resultMap id="BaseResultMap" type="com.yexj.yougo.jdbc.model.OrderControl" >
+    <id column="order_control_id" property="orderControlId" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="control_status" property="controlStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_control_id, order_id, control_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_control
+    where order_control_id = #{orderControlId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_control
+    where order_control_id = #{orderControlId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yexj.yougo.jdbc.model.OrderControl" >
+    insert into order_control (order_control_id, order_id, control_status
+      )
+    values (#{orderControlId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{controlStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yexj.yougo.jdbc.model.OrderControl" >
+    insert into order_control
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderControlId != null" >
+        order_control_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="controlStatus != null" >
+        control_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderControlId != null" >
+        #{orderControlId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="controlStatus != null" >
+        #{controlStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yexj.yougo.jdbc.model.OrderControl" >
+    update order_control
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="controlStatus != null" >
+        control_status = #{controlStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_control_id = #{orderControlId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yexj.yougo.jdbc.model.OrderControl" >
+    update order_control
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      control_status = #{controlStatus,jdbcType=VARCHAR}
+    where order_control_id = #{orderControlId,jdbcType=VARCHAR}
+  </update>
+  <sql id="Select_Where_Condition" >
+    <where >
+      <if test="orderControlId != null and orderControlId !='' " >
+        and order_control_id=#{orderControlId}
+      </if>
+      <if test="orderId != null and orderId !='' " >
+        and order_id=#{orderId}
+      </if>
+      <if test="controlStatus != null and controlStatus !='' " >
+        and control_status=#{controlStatus}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByParam" parameterType="com.yexj.yougo.jdbc.model.OrderControl" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM order_control
+    <include refid="Select_Where_Condition"/>
+  </select>
+  <select id="selectCountByParam" parameterType="com.yexj.yougo.jdbc.model.OrderControl" resultType="java.lang.Integer" >
+    SELECT
+    COUNT(*)
+    FROM order_control
+    <include refid="Select_Where_Condition"/>
+  </select>
+</mapper>

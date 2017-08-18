@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.yexj</groupId>
+    <artifactId>yougo</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <properties>
+        <!-- projcet setting -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- bill version setting -->
+        <yougo-api.version>1.0.0.RELEASE</yougo-api.version>
+        <yougo-common.version>1.0.0.RELEASE</yougo-common.version>
+        <yougo-jdbc.version>1.0.0.RELEASE</yougo-jdbc.version>
+        <yougo-rest.version>1.0.0.RELEASE</yougo-rest.version>
+        <yougo-rest-depency.version>1.0.0.RELEASE</yougo-rest-depency.version>
+        <yougo-service.version>1.0.0.RELEASE</yougo-service.version>
+        <yougo-job.version>1.0.0.RELEASE</yougo-job.version>
+        <yougo-integration.version>1.0.0.RELEASE</yougo-integration.version>
+    </properties>
+
+    <modules>
+        <module>yougo-rest</module>
+        <module>yougo-api</module>
+        <module>yougo-common</module>
+        <module>yougo-integration</module>
+        <module>yougo-jdbc</module>
+        <module>yougo-job</module>
+        <module>yougo-rest-depency</module>
+        <module>yougo-service</module>
+    </modules>
+</project>

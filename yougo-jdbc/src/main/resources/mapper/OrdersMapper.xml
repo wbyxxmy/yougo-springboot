@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yexj.yougo.jdbc.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.yexj.yougo.jdbc.model.Orders" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="kind" property="kind" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="goods_amount" property="goodsAmount" jdbcType="REAL" />
+    <result column="measure_unit" property="measureUnit" jdbcType="VARCHAR" />
+    <result column="total_price" property="totalPrice" jdbcType="REAL" />
+    <result column="order_status" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="order_discount_rate" property="orderDiscountRate" jdbcType="REAL" />
+    <result column="order_date" property="orderDate" jdbcType="DATE" />
+    <result column="reduction" property="reduction" jdbcType="REAL" />
+    <result column="goods_price_score" property="goodsPriceScore" jdbcType="REAL" />
+    <result column="goods_quality_score" property="goodsQualityScore" jdbcType="REAL" />
+    <result column="goods_trans_score" property="goodsTransScore" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, shop_id, user_id, goods_name, kind, price, goods_amount, measure_unit, 
+    total_price, order_status, order_discount_rate, order_date, reduction, goods_price_score, 
+    goods_quality_score, goods_trans_score
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from orders
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yexj.yougo.jdbc.model.Orders" >
+    insert into orders (order_id, shop_id, user_id, 
+      goods_name, kind, price, 
+      goods_amount, measure_unit, total_price, 
+      order_status, order_discount_rate, order_date, 
+      reduction, goods_price_score, goods_quality_score, 
+      goods_trans_score)
+    values (#{orderId,jdbcType=VARCHAR}, #{shopId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{kind,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
+      #{goodsAmount,jdbcType=REAL}, #{measureUnit,jdbcType=VARCHAR}, #{totalPrice,jdbcType=REAL}, 
+      #{orderStatus,jdbcType=VARCHAR}, #{orderDiscountRate,jdbcType=REAL}, #{orderDate,jdbcType=DATE}, 
+      #{reduction,jdbcType=REAL}, #{goodsPriceScore,jdbcType=REAL}, #{goodsQualityScore,jdbcType=REAL}, 
+      #{goodsTransScore,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yexj.yougo.jdbc.model.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="kind != null" >
+        kind,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount,
+      </if>
+      <if test="measureUnit != null" >
+        measure_unit,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderDiscountRate != null" >
+        order_discount_rate,
+      </if>
+      <if test="orderDate != null" >
+        order_date,
+      </if>
+      <if test="reduction != null" >
+        reduction,
+      </if>
+      <if test="goodsPriceScore != null" >
+        goods_price_score,
+      </if>
+      <if test="goodsQualityScore != null" >
+        goods_quality_score,
+      </if>
+      <if test="goodsTransScore != null" >
+        goods_trans_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="kind != null" >
+        #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="goodsAmount != null" >
+        #{goodsAmount,jdbcType=REAL},
+      </if>
+      <if test="measureUnit != null" >
+        #{measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=REAL},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDiscountRate != null" >
+        #{orderDiscountRate,jdbcType=REAL},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="reduction != null" >
+        #{reduction,jdbcType=REAL},
+      </if>
+      <if test="goodsPriceScore != null" >
+        #{goodsPriceScore,jdbcType=REAL},
+      </if>
+      <if test="goodsQualityScore != null" >
+        #{goodsQualityScore,jdbcType=REAL},
+      </if>
+      <if test="goodsTransScore != null" >
+        #{goodsTransScore,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yexj.yougo.jdbc.model.Orders" >
+    update orders
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="kind != null" >
+        kind = #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount = #{goodsAmount,jdbcType=REAL},
+      </if>
+      <if test="measureUnit != null" >
+        measure_unit = #{measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=REAL},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDiscountRate != null" >
+        order_discount_rate = #{orderDiscountRate,jdbcType=REAL},
+      </if>
+      <if test="orderDate != null" >
+        order_date = #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="reduction != null" >
+        reduction = #{reduction,jdbcType=REAL},
+      </if>
+      <if test="goodsPriceScore != null" >
+        goods_price_score = #{goodsPriceScore,jdbcType=REAL},
+      </if>
+      <if test="goodsQualityScore != null" >
+        goods_quality_score = #{goodsQualityScore,jdbcType=REAL},
+      </if>
+      <if test="goodsTransScore != null" >
+        goods_trans_score = #{goodsTransScore,jdbcType=REAL},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yexj.yougo.jdbc.model.Orders" >
+    update orders
+    set shop_id = #{shopId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      kind = #{kind,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      goods_amount = #{goodsAmount,jdbcType=REAL},
+      measure_unit = #{measureUnit,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=REAL},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
+      order_discount_rate = #{orderDiscountRate,jdbcType=REAL},
+      order_date = #{orderDate,jdbcType=DATE},
+      reduction = #{reduction,jdbcType=REAL},
+      goods_price_score = #{goodsPriceScore,jdbcType=REAL},
+      goods_quality_score = #{goodsQualityScore,jdbcType=REAL},
+      goods_trans_score = #{goodsTransScore,jdbcType=REAL}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <sql id="Select_Where_Condition" >
+    <where >
+      <if test="orderId != null and orderId !='' " >
+        and order_id=#{orderId}
+      </if>
+      <if test="shopId != null and shopId !='' " >
+        and shop_id=#{shopId}
+      </if>
+      <if test="userId != null and userId !='' " >
+        and user_id=#{userId}
+      </if>
+      <if test="goodsName != null and goodsName !='' " >
+        and goods_name=#{goodsName}
+      </if>
+      <if test="kind != null and kind !='' " >
+        and kind=#{kind}
+      </if>
+      <if test="price != null and price !='' " >
+        and price=#{price}
+      </if>
+      <if test="goodsAmount != null and goodsAmount !='' " >
+        and goods_amount=#{goodsAmount}
+      </if>
+      <if test="measureUnit != null and measureUnit !='' " >
+        and measure_unit=#{measureUnit}
+      </if>
+      <if test="totalPrice != null and totalPrice !='' " >
+        and total_price=#{totalPrice}
+      </if>
+      <if test="orderStatus != null and orderStatus !='' " >
+        and order_status=#{orderStatus}
+      </if>
+      <if test="orderDiscountRate != null and orderDiscountRate !='' " >
+        and order_discount_rate=#{orderDiscountRate}
+      </if>
+      <if test="orderDate != null and orderDate !='' " >
+        and order_date=#{orderDate}
+      </if>
+      <if test="reduction != null and reduction !='' " >
+        and reduction=#{reduction}
+      </if>
+      <if test="goodsPriceScore != null and goodsPriceScore !='' " >
+        and goods_price_score=#{goodsPriceScore}
+      </if>
+      <if test="goodsQualityScore != null and goodsQualityScore !='' " >
+        and goods_quality_score=#{goodsQualityScore}
+      </if>
+      <if test="goodsTransScore != null and goodsTransScore !='' " >
+        and goods_trans_score=#{goodsTransScore}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByParam" parameterType="com.yexj.yougo.jdbc.model.Orders" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM orders
+    <include refid="Select_Where_Condition"/>
+  </select>
+  <select id="selectCountByParam" parameterType="com.yexj.yougo.jdbc.model.Orders" resultType="java.lang.Integer" >
+    SELECT
+    COUNT(*)
+    FROM orders
+    <include refid="Select_Where_Condition"/>
+  </select>
+</mapper>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yexj.yougo.jdbc.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.yexj.yougo.jdbc.model.Goods" >
+    <id column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="kind" property="kind" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="origin_cost" property="originCost" jdbcType="REAL" />
+    <result column="discount" property="discount" jdbcType="REAL" />
+    <result column="discount_begin_date" property="discountBeginDate" jdbcType="DATE" />
+    <result column="discount_end_date" property="discountEndDate" jdbcType="DATE" />
+    <result column="remain_amount" property="remainAmount" jdbcType="REAL" />
+    <result column="product_date" property="productDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goods_id, shop_id, name, kind, price, origin_cost, discount, discount_begin_date, 
+    discount_end_date, remain_amount, product_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yexj.yougo.jdbc.model.Goods" >
+    insert into goods (goods_id, shop_id, name, 
+      kind, price, origin_cost, 
+      discount, discount_begin_date, discount_end_date, 
+      remain_amount, product_date)
+    values (#{goodsId,jdbcType=VARCHAR}, #{shopId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{kind,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{originCost,jdbcType=REAL}, 
+      #{discount,jdbcType=REAL}, #{discountBeginDate,jdbcType=DATE}, #{discountEndDate,jdbcType=DATE}, 
+      #{remainAmount,jdbcType=REAL}, #{productDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yexj.yougo.jdbc.model.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="kind != null" >
+        kind,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="originCost != null" >
+        origin_cost,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="discountBeginDate != null" >
+        discount_begin_date,
+      </if>
+      <if test="discountEndDate != null" >
+        discount_end_date,
+      </if>
+      <if test="remainAmount != null" >
+        remain_amount,
+      </if>
+      <if test="productDate != null" >
+        product_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="kind != null" >
+        #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="originCost != null" >
+        #{originCost,jdbcType=REAL},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=REAL},
+      </if>
+      <if test="discountBeginDate != null" >
+        #{discountBeginDate,jdbcType=DATE},
+      </if>
+      <if test="discountEndDate != null" >
+        #{discountEndDate,jdbcType=DATE},
+      </if>
+      <if test="remainAmount != null" >
+        #{remainAmount,jdbcType=REAL},
+      </if>
+      <if test="productDate != null" >
+        #{productDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yexj.yougo.jdbc.model.Goods" >
+    update goods
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="kind != null" >
+        kind = #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="originCost != null" >
+        origin_cost = #{originCost,jdbcType=REAL},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=REAL},
+      </if>
+      <if test="discountBeginDate != null" >
+        discount_begin_date = #{discountBeginDate,jdbcType=DATE},
+      </if>
+      <if test="discountEndDate != null" >
+        discount_end_date = #{discountEndDate,jdbcType=DATE},
+      </if>
+      <if test="remainAmount != null" >
+        remain_amount = #{remainAmount,jdbcType=REAL},
+      </if>
+      <if test="productDate != null" >
+        product_date = #{productDate,jdbcType=DATE},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yexj.yougo.jdbc.model.Goods" >
+    update goods
+    set shop_id = #{shopId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      kind = #{kind,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      origin_cost = #{originCost,jdbcType=REAL},
+      discount = #{discount,jdbcType=REAL},
+      discount_begin_date = #{discountBeginDate,jdbcType=DATE},
+      discount_end_date = #{discountEndDate,jdbcType=DATE},
+      remain_amount = #{remainAmount,jdbcType=REAL},
+      product_date = #{productDate,jdbcType=DATE}
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </update>
+  <sql id="Select_Where_Condition" >
+    <where >
+      <if test="goodsId != null and goodsId !='' " >
+        and goods_id=#{goodsId}
+      </if>
+      <if test="shopId != null and shopId !='' " >
+        and shop_id=#{shopId}
+      </if>
+      <if test="name != null and name !='' " >
+        and name=#{name}
+      </if>
+      <if test="kind != null and kind !='' " >
+        and kind=#{kind}
+      </if>
+      <if test="price != null and price !='' " >
+        and price=#{price}
+      </if>
+      <if test="originCost != null and originCost !='' " >
+        and origin_cost=#{originCost}
+      </if>
+      <if test="discount != null and discount !='' " >
+        and discount=#{discount}
+      </if>
+      <if test="discountBeginDate != null and discountBeginDate !='' " >
+        and discount_begin_date=#{discountBeginDate}
+      </if>
+      <if test="discountEndDate != null and discountEndDate !='' " >
+        and discount_end_date=#{discountEndDate}
+      </if>
+      <if test="remainAmount != null and remainAmount !='' " >
+        and remain_amount=#{remainAmount}
+      </if>
+      <if test="productDate != null and productDate !='' " >
+        and product_date=#{productDate}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByParam" parameterType="com.yexj.yougo.jdbc.model.Goods" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM goods
+    <include refid="Select_Where_Condition"/>
+  </select>
+  <select id="selectCountByParam" parameterType="com.yexj.yougo.jdbc.model.Goods" resultType="java.lang.Integer" >
+    SELECT
+    COUNT(*)
+    FROM goods
+    <include refid="Select_Where_Condition"/>
+  </select>
+</mapper>

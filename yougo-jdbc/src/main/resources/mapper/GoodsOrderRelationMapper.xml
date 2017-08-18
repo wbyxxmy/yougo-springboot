@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yexj.yougo.jdbc.mapper.GoodsOrderRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.yexj.yougo.jdbc.model.GoodsOrderRelation" >
+    <id column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.yexj.yougo.jdbc.model.GoodsOrderRelation" >
+    delete from goods_order_relation
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+      and order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yexj.yougo.jdbc.model.GoodsOrderRelation" >
+    insert into goods_order_relation (goods_id, order_id)
+    values (#{goodsId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yexj.yougo.jdbc.model.GoodsOrderRelation" >
+    insert into goods_order_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <sql id="Select_Where_Condition" >
+    <where >
+      <if test="goodsId != null and goodsId !='' " >
+        and goods_id=#{goodsId}
+      </if>
+      <if test="orderId != null and orderId !='' " >
+        and order_id=#{orderId}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByParam" parameterType="com.yexj.yougo.jdbc.model.GoodsOrderRelation" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM goods_order_relation
+    <include refid="Select_Where_Condition"/>
+  </select>
+  <select id="selectCountByParam" parameterType="com.yexj.yougo.jdbc.model.GoodsOrderRelation" resultType="java.lang.Integer" >
+    SELECT
+    COUNT(*)
+    FROM goods_order_relation
+    <include refid="Select_Where_Condition"/>
+  </select>
+</mapper>
