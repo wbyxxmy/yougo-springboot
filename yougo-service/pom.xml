@@ -10,6 +10,27 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>yougo-service</artifactId>
+    <version>${yougo-service.version}</version>
 
+<dependencies>
+    <dependency>
+        <groupId>com.yexj</groupId>
+        <artifactId>yougo-api</artifactId>
+        <version>${yougo-api.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.yexj</groupId>
+        <artifactId>yougo-jdbc</artifactId>
+        <version>${yougo-jdbc.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
+    <dependency>
+        <groupId></groupId>
+        <artifactId></artifactId>
+    </dependency>
 
+</dependencies>
 </project>

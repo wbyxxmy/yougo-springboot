@@ -10,6 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>yougo-rest-depency</artifactId>
-
+    <version>${yougo-rest-depency.version}</version>
 
 </project>

@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>yougo-jdbc</artifactId>
+    <version>${yougo-jdbc.version}</version>
     <build>
         <plugins>
             <plugin>
@@ -37,7 +38,7 @@
                     <dependency>
                         <groupId>com.yexj</groupId>
                         <artifactId>yougo-common</artifactId>
-                        <version>1.0</version>
+                        <version>${yougo-common.version}</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -87,17 +88,12 @@
         <dependency>
             <groupId>com.yexj</groupId>
             <artifactId>yougo-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${yougo-common.version}</version>
         </dependency>
         <!--<dependency>-->
             <!--<groupId>org.junit.jupiter</groupId>-->
             <!--<artifactId>junit-jupiter-api</artifactId>-->
             <!--<version>RELEASE</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.yexj</groupId>-->
-            <!--<artifactId>yougo-common</artifactId>-->
-            <!--<version>1.0-SNAPSHOT</version>-->
         <!--</dependency>-->
     </dependencies>
 

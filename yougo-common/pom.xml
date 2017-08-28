@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>yougo-common</artifactId>
+    <version>${yougo-common.version}</version>
     <repositories>
         <repository>
             <id>in-project</id>
@@ -68,6 +69,12 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.7.0</version>
+        </dependency>
+        <!-- fast json -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.7</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
