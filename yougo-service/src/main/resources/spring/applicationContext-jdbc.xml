@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="master" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<!-- 基本属性name、url、user、password -->
+		<property name="username" value="${master.username}" />
+		<property name="url" value="${master.driver.url}" />
+		<property name="password" value="${master.password}" />
+		<property name="name" value="${master.name}" />
+		<!-- 连接池配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${jdbc.pool.durid.initialSize}" />
+		<property name="minIdle" value="${jdbc.pool.durid.minIdle}" />
+		<property name="maxActive" value="${jdbc.pool.durid.maxActive}" />
+		<property name="maxWait" value="${jdbc.pool.durid.maxWait}" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis"
+			value="${jdbc.pool.durid.timeBetweenEvictionRunsMillis}" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis"
+			value="${jdbc.pool.durid.minEvictableIdleTimeMillis}" />
+		<!-- 检测连接配置-->
+		<property name="validationQuery" value="${jdbc.pool.durid.validationQuery}" />
+		<property name="testWhileIdle" value="${jdbc.pool.durid.testWhileIdle}" />
+		<property name="testOnBorrow" value="${jdbc.pool.durid.testOnBorrow}" />
+		<property name="testOnReturn" value="${jdbc.pool.durid.testOnReturn}" />
+		<property name="connectionProperties" value="clientEncoding=UTF-8" />
+		<property name="proxyFilters">
+		  <list>
+		      <ref bean="stat-filter"/>
+			  <ref bean="wall-filter"/>
+		      <ref bean="log-filter"/>
+		  </list>
+		</property>
+		<!--<property name="filters">
+		  <value>stat,wall,log4j</value>
+		</property>-->
+	</bean>
+
+	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+	   <property name="mergeSql" value="true"/>
+	   <property name="slowSqlMillis" value="10000"/>
+	   <property name="logSlowSql" value="true"/>
+	</bean>
+
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter"/>
+
+	<bean id="slave1" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<!-- 基本属性name、url、user、password -->
+		<property name="username" value="${slave1.username}" />
+		<property name="url" value="${slave1.driver.url}" />
+		<property name="password" value="${slave1.password}" />
+		<property name="name" value="${slave1.name}" />
+
+		<!-- 连接池配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${jdbc.pool.durid.initialSize}" />
+		<property name="minIdle" value="${jdbc.pool.durid.minIdle}" />
+		<property name="maxActive" value="${jdbc.pool.durid.maxActive}" />
+
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${jdbc.pool.durid.maxWait}" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis"
+			value="${jdbc.pool.durid.timeBetweenEvictionRunsMillis}" />
+
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis"
+			value="${jdbc.pool.durid.minEvictableIdleTimeMillis}" />
+
+		<!-- 检测连接配置-->
+		<property name="validationQuery" value="${jdbc.pool.durid.validationQuery}" />
+		<property name="testWhileIdle" value="${jdbc.pool.durid.testWhileIdle}" />
+		<property name="testOnBorrow" value="${jdbc.pool.durid.testOnBorrow}" />
+		<property name="testOnReturn" value="${jdbc.pool.durid.testOnReturn}" />
+		<property name="connectionProperties" value="clientEncoding=UTF-8" />
+		<property name="proxyFilters">
+		  <list>
+		      <ref bean="stat-filter"/>
+			  <ref bean="wall-filter"/>
+		      <ref bean="log-filter"/>
+		  </list>
+		</property>
+		<!--<property name="filters">
+		  <value>stat,wall,log4j</value>
+		</property>-->
+	</bean>
+
+	<bean id="wall-filter" class="com.alibaba.druid.wall.WallFilter">
+		<property name="config" ref="wall-config" />
+	</bean>
+
+	<bean id="wall-config" class="com.alibaba.druid.wall.WallConfig">
+		<property name="multiStatementAllow" value="true" />
+	</bean>
+
+	<bean id="dataSource" class="com.yexj.yougo.jdbc.datasource.DynamicDataSource">
+		<property name="master" ref="master" />
+		<property name="slaves">
+			<list>
+				<ref bean="slave1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- mybatis文件配置，扫描所有mapper文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:mapper/**/*.xml" />
+		<property name="configLocation"  value="classpath:spring/mybatis-config.xml" />
+	</bean>
+
+
+	<!-- 配置扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	 <!--<bean class="com.chinaredstar.perseus.db.MapperScannerConfigurer">-->
+		<!-- 扫描com.chinaredstar.expense.jdbc.mapper这个包以及它的子包下的所有映射接口类 -->
+		<property name="basePackage" value="com.yexj.yougo.jdbc.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- 配置Spring的事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+ 	<!--<bean id="transactionManager" class="com.chinaredstar.perseus.db.DynamicDataSourceTransactionManager">-->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!--注解方式配置事物 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- 配置事务的传播特性 -->
+	<tx:advice id ="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes >
+			<tx:method name ="find*" read-only="true" />
+			<tx:method name ="get*" read-only="true" />
+			<tx:method name ="query*" read-only="true" />
+			<tx:method name ="add*" propagation="REQUIRED" />
+			<tx:method name ="update*" propagation="REQUIRED" />
+			<tx:method name ="del*" propagation="REQUIRED" />
+		</tx:attributes >
+	</tx:advice >
+	<!-- 配置AOP -->
+	<aop:config >
+		<!-- 切点 -->
+		<aop:pointcut expression ="execution(* com.yexj.yougo.service..*.*(..))"
+					  id= "pointcut" />
+		<aop:advisor advice-ref ="txAdvice" pointcut-ref="pointcut" />
+	</aop:config >
+
+</beans>

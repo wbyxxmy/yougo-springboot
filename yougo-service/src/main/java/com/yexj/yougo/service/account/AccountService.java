@@ -11,21 +11,21 @@ import com.yexj.yougo.core.account.IAccountCoreService;
 import com.yexj.yougo.jdbc.model.Users;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by xinjian.ye on 2017/8/18.
  */
-@Service
+@Service("accountService")
 public class AccountService implements IAccountService {
 
     private static final Logger logger = LoggerFactory.getLogger(AccountService.class);
-    @Resource
+    @Autowired
     private IAccountCoreService accountCoreService;
 
     @Override

@@ -5,13 +5,71 @@
     <parent>
         <artifactId>yougo</artifactId>
         <groupId>com.yexj</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${yougo.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>yougo-service</artifactId>
     <version>${yougo-service.version}</version>
 
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <env>local</env>
+                <jvmSettings.javaagent>-server</jvmSettings.javaagent>
+                <jvmSettings.initialMemorySize>2058M</jvmSettings.initialMemorySize>
+                <jvmSettings.maxMemorySize>2058M</jvmSettings.maxMemorySize>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+                <jvmSettings.javaagent>-server</jvmSettings.javaagent>
+                <jvmSettings.initialMemorySize>512M</jvmSettings.initialMemorySize>
+                <jvmSettings.maxMemorySize>512M</jvmSettings.maxMemorySize>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>stg</id>
+            <properties>
+                <env>stg</env>
+                <jvmSettings.javaagent>-server</jvmSettings.javaagent>
+                <jvmSettings.initialMemorySize>2058M</jvmSettings.initialMemorySize>
+                <jvmSettings.maxMemorySize>2058M</jvmSettings.maxMemorySize>
+            </properties>
+        </profile>
+        <!-- uat1 -->
+        <profile>
+            <id>uat1</id>
+            <properties>
+                <env>uat1</env>
+                <jvmSettings.javaagent>
+                    -javaagent:/data/app/pinpoint-agent-1.6.1/pinpoint-bootstrap-1.6.1.jar
+                </jvmSettings.javaagent>
+                <jvmSettings.initialMemorySize>2058M</jvmSettings.initialMemorySize>
+                <jvmSettings.maxMemorySize>2058M</jvmSettings.maxMemorySize>
+            </properties>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <properties>
+                <env>prd</env>
+                <jvmSettings.javaagent>
+                    -javaagent:/data/app/pinpoint-agent-1.6.1/100/pinpoint-bootstrap-1.6.1.jar
+                </jvmSettings.javaagent>
+                <jvmSettings.initialMemorySize>2058M</jvmSettings.initialMemorySize>
+                <jvmSettings.maxMemorySize>2058M</jvmSettings.maxMemorySize>
+            </properties>
+        </profile>
+    </profiles>
 <dependencies>
     <dependency>
         <groupId>com.yexj</groupId>
@@ -24,13 +82,94 @@
         <version>${yougo-jdbc.version}</version>
     </dependency>
     <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-autoconfigure</artifactId>
+        <groupId>com.yexj</groupId>
+        <artifactId>yougo-integration</artifactId>
+        <version>${yougo-integration.version}</version>
     </dependency>
     <dependency>
-        <groupId></groupId>
-        <artifactId></artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>1.5.6.RELEASE</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+            </exclusion>
+        </exclusions>
     </dependency>
 
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>3.2.5.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>1.8.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.8.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.wss4j</groupId>
+        <artifactId>wss4j-ws-security-common</artifactId>
+        <version>2.0-beta</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>2.4</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>1.0.4</version>
+    </dependency>
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>0.2.15</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-dbcp</groupId>
+        <artifactId>commons-dbcp</artifactId>
+        <version>1.4</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>RELEASE</version>
+    </dependency>
 </dependencies>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>env/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/env/${env}</directory>
+                <targetPath>${project.build.outputDirectory}</targetPath>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>

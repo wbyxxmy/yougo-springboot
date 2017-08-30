@@ -17,11 +17,11 @@ import javax.annotation.Resource;
 @RequestMapping("/")
 public class AccountController {
     public static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);
-    @Resource
-    private IAccountService accountService;
+//    @Resource
+//    private IAccountService accountService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String Login(UserVO userVO) {
+    @RequestMapping(value = "index", method = RequestMethod.GET)
+    public String login(UserVO userVO) {
         return "index.jsp";
     }
 }

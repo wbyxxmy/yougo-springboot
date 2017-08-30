@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ImportResource;
 /**
  * Created by xinjian.ye on 2017/8/18.
  */
-@SpringBootApplication()
+@SpringBootApplication(exclude = {SessionAutoConfiguration.class, DataSourceAutoConfiguration.class, RedisAutoConfiguration.class})
 @ImportResource({"classpath*:spring/applicationContext-*.xml"})
 public class Application {
     public static void main(String[] args) {

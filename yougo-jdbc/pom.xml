@@ -5,7 +5,7 @@
     <parent>
         <artifactId>yougo</artifactId>
         <groupId>com.yexj</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${yougo.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -55,10 +55,16 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
+        <!-- mybatis-->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.3.1</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.generator</groupId>
@@ -84,6 +90,21 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-Java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>8.5.16</version>
         </dependency>
         <dependency>
             <groupId>com.yexj</groupId>

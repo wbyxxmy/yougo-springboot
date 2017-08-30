@@ -18,13 +18,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="yougo-api" target="1.6" />
+      <module name="yougo-api" target="1.5" />
       <module name="yougo-common" target="1.8" />
-      <module name="yougo-integration" target="1.6" />
+      <module name="yougo-integration" target="1.5" />
       <module name="yougo-jdbc" target="1.8" />
-      <module name="yougo-job" target="1.6" />
+      <module name="yougo-job" target="1.5" />
       <module name="yougo-rest" target="1.6" />
-      <module name="yougo-rest-depency" target="1.6" />
+      <module name="yougo-rest-depency" target="1.5" />
       <module name="yougo-restdepency" target="1.5" />
       <module name="yougo-service" target="1.6" />
       <module name="yougo-springboot" target="1.6" />

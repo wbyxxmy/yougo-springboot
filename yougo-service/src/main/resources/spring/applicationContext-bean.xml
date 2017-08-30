@@ -10,7 +10,7 @@
     <context:component-scan base-package="com.yexj.yougo" />
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <!--<bean id="graphitePropertyPlaceholderConfigurer" class="com.chinaredstar.perseus.monitor.GraphitePropertyPlaceholderConfigurer" init-method="setProperties">-->
+    <!--<bean id="graphitePropertyPlaceholderConfigurer" class="com.yexj.yougo.jdbc.datasource.DataSourceContextHolder" init-method="setProperties">-->
         <!--<property name="order" value="1"/>-->
         <!--<property name="ignoreUnresolvablePlaceholders" value="true"/>-->
     <!--</bean>-->
@@ -20,6 +20,7 @@
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
         <property name="locations">
             <list>
+                <value>classpath:application.properties</value>
                 <value>classpath:mysql.properties</value>
             </list>
         </property>
