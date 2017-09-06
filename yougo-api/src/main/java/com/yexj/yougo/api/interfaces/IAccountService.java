@@ -11,9 +11,9 @@ import java.util.List;
  * Created by xinjian.ye on 2017/8/23.
  */
 public interface IAccountService {
-    Result addUser(UserParamDTO userDTO);
+    Result<String> addUser(UserParamDTO userDTO);
     Result updateUser(UserParamDTO userDTO);
     Result<List<UserResultDTO>> searchUser(UserParamDTO userParamDTO);
     Result deleteUser(UserParamDTO userDTO);
-    Result checkUser(UserCheckDTO userCheckDTO);
+    Result<UserResultDTO> checkUser(UserCheckDTO userCheckDTO);
 }

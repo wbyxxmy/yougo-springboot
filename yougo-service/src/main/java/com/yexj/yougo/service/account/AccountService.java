@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by xinjian.ye on 2017/8/18.
  */
-@Service("accountService")
+@Service
 public class AccountService implements IAccountService {
 
     private static final Logger logger = LoggerFactory.getLogger(AccountService.class);
@@ -106,18 +106,23 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public Result checkUser(UserCheckDTO userCheckDTO) {
-        Result<List<Users>> result = Result.newSuccess();
-        List<Users> usersList = new ArrayList<Users>();
+    public Result<UserResultDTO> checkUser(UserCheckDTO userCheckDTO) {
+        Result<UserResultDTO> result = Result.newSuccess();
+        Result<List<Users>> resultUser = new Result<List<Users>>();
         try {
             Users users = new Users();
             CopyUtil.copy(userCheckDTO, users);
-            result = accountCoreService.searchUser(users);
-            if(ResultCode.SUCCESS.getCode().equals(result.getCode())) {
-                if(!CollectionUtils.isEmpty(result.getData())) {
-                    if(result.getData().size() != 1) {
+            resultUser = accountCoreService.searchUser(users);
+            if(ResultCode.SUCCESS.getCode().equals(resultUser.getCode())) {
+                if(!CollectionUtils.isEmpty(resultUser.getData())) {
+                    if(resultUser.getData().size() != 1) {
                         logger.info("用户名或密码不存在! -- {}", userCheckDTO);
                         result.setErrorCode(ResultCode.ACCOUNT_LOGIN_FAIL);
+                    }
+                    else {
+                        UserResultDTO userResultDTO = new UserResultDTO();
+                        CopyUtil.copy(resultUser.getData().get(0), userResultDTO);
+                        result.setData(userResultDTO);
                     }
                 }
             }

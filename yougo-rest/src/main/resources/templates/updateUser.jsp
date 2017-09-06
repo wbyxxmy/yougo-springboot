@@ -34,7 +34,7 @@
         <%--String u=(String)session.getAttribute("myName") ;--%>
         <%--if(u==null)--%>
         <%--{--%>
-            <%--response.sendRedirect("index.jsp?err=1");--%>
+            <%--response.sendRedirect("index.html?err=1");--%>
             <%--return ;--%>
         <%--}--%>
     <%--%>--%>

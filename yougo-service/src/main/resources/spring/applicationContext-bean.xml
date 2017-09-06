@@ -22,6 +22,7 @@
             <list>
                 <value>classpath:application.properties</value>
                 <value>classpath:mysql.properties</value>
+                <value>classpath:dubbo.properties</value>
             </list>
         </property>
     </bean>

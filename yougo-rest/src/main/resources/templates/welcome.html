@@ -21,14 +21,14 @@
     <meta http-equiv="description" content="This is my page">
 </head>
 <body bgcolor="#CED3FE">
-    欢迎光临:${usersResultDTO.userName}
+    欢迎光临:${userResultDTO.userName}
     <center>
         <hr>
         <h1>请选择操作</h1>
         <a href="<%=basePath%>UserManage/updateUser?userId=${usersResultDTO.userId}">修改信息</a><br>
         <a href="<%=basePath%>UserManage/addUser">添加用户</a><br>
         <a href="<%=basePath%>UserManage/manageUser?pageNow=1">管理用户</a><br>
-        <hr>
+        </hr>
     </center>
 </body>
 </html>
