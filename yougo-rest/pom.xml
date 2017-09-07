@@ -11,6 +11,13 @@
     <artifactId>yougo-rest</artifactId>
     <version>${yougo-rest.version}</version>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <jvmSettings.agentId>yougo</jvmSettings.agentId>
+        <jvmSettings.agentApplicationName>yougo-rest</jvmSettings.agentApplicationName>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <profiles>
         <profile>
             <id>local</id>
@@ -219,6 +226,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
             <version>2.5.3</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--zookeeper-->
         <dependency>
@@ -289,7 +302,7 @@
                     <daemons>
                         <daemon>
                             <id>${project.name}</id>
-                            <mainClass>com.yexj.yougo.Application</mainClass>
+                            <mainClass>com.yexj.yougo.rest.Application</mainClass>
                             <platforms>
                                 <platform>jsw</platform>
                             </platforms>

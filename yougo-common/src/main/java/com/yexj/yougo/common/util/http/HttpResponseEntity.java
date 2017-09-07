@@ -1,4 +1,4 @@
-package com.chinaredstar.bill.common.util.http;
+package com.yexj.yougo.common.util.http;
 
 public class HttpResponseEntity {
 	private String responseContent;
