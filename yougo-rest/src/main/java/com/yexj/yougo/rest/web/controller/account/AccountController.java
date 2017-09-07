@@ -35,7 +35,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "checkAccount", method = RequestMethod.POST)
-    public ModelAndView checkAccount(@RequestBody @Validated UserVO userVO){
+    public ModelAndView checkAccount(@Validated UserVO userVO){
         UserCheckDTO userCheckDTO = new UserCheckDTO();
         CopyUtil.copy(userVO, userCheckDTO);
         Result<UserResultDTO> result = accountService.checkUser(userCheckDTO);
@@ -48,8 +48,8 @@ public class AccountController {
             return new ModelAndView("/err");
         }
         else {
-            ModelAndView ret = new ModelAndView("welcome");
-            ret.addObject(result.getData());
+            ModelAndView ret = new ModelAndView("/welcome");
+//            ret.addObject(result.getData());
             return ret;
         }
     }

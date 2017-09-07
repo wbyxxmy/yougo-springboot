@@ -5,6 +5,9 @@
     <id column="goods_id" property="goodsId" jdbcType="VARCHAR" />
     <id column="order_id" property="orderId" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List">
+    goods_id,order_id
+  </sql>
   <delete id="deleteByPrimaryKey" parameterType="com.yexj.yougo.jdbc.model.GoodsOrderRelation" >
     delete from goods_order_relation
     where goods_id = #{goodsId,jdbcType=VARCHAR}

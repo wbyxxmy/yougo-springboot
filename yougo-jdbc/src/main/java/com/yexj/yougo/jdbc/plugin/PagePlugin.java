@@ -34,7 +34,7 @@ import java.util.Properties;
  * 分页查询拦截器插件
  * Created by DongLu on 2015/10/13.
  */
-@Intercepts({@Signature(type=StatementHandler.class,method="prepare",args={Connection.class,Integer.class})})
+@Intercepts({@Signature(type=StatementHandler.class,method="prepare",args={Connection.class})})
 public class PagePlugin implements Interceptor {
 
     private static String dialect = "";	//数据库方言
