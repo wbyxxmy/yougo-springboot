@@ -13,6 +13,7 @@ import java.util.Objects;
 public enum ResultCode {
     //用户信息返回代码
     ACCOUNT_LOGIN_FAIL("1001", "用户名或密码错误"),
+    ACCOUNT_NUILTY_RESULT("1002","存在多个相同的用户,请联系系统管理员"),
 
     SUCCESS("200","操作成功"),
     FAIL("500","系统异常"),

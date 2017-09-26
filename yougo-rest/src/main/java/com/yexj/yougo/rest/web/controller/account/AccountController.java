@@ -35,7 +35,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "checkAccount", method = RequestMethod.POST)
-    public ModelAndView checkAccount(@Validated UserVO userVO){
+    public ModelAndView checkAccount(@RequestBody @Validated UserVO userVO){
         UserCheckDTO userCheckDTO = new UserCheckDTO();
         CopyUtil.copy(userVO, userCheckDTO);
         Result<UserResultDTO> result = accountService.checkUser(userCheckDTO);

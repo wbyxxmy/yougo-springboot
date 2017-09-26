@@ -114,21 +114,24 @@ public class AccountService implements IAccountService {
             CopyUtil.copy(userCheckDTO, users);
             resultUser = accountCoreService.searchUser(users);
             if(ResultCode.SUCCESS.getCode().equals(resultUser.getCode())) {
-                if(!CollectionUtils.isEmpty(resultUser.getData())) {
-                    if(resultUser.getData().size() != 1) {
-                        logger.info("用户名或密码不存在! -- {}", userCheckDTO);
-                        result.setErrorCode(ResultCode.ACCOUNT_LOGIN_FAIL);
+                if (!CollectionUtils.isEmpty(resultUser.getData())) {
+                    if (resultUser.getData().size() != 1) {
+                        logger.error("存在多个用户! -- {}", userCheckDTO);
+                        result.setErrorCode(ResultCode.ACCOUNT_NUILTY_RESULT);
                     }
                     else {
                         UserResultDTO userResultDTO = new UserResultDTO();
                         CopyUtil.copy(resultUser.getData().get(0), userResultDTO);
                         result.setData(userResultDTO);
                     }
+                } else {
+                    logger.info("用户名或密码不存在! -- {}", userCheckDTO);
+                    result.setErrorCode(ResultCode.ACCOUNT_LOGIN_FAIL);
                 }
             }
             return result;
         }catch (Exception e) {
-            logger.error("用户登录失败 -- {}", e);
+            logger.warn("用户登录失败 -- {}", e);
             result.setErrorCode(ResultCode.FAIL);
             return result;
         }
